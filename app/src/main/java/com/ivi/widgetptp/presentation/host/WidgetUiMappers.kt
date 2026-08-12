@@ -36,11 +36,16 @@ class DateTimeUiMapper @Inject constructor() {
 }
 
 class DriverHealthUiMapper @Inject constructor() {
-    fun map(data: DriverHealthData?): WidgetSlotUiState.DriverHealth =
-        WidgetSlotUiState.DriverHealth(
-            heartRateText = (data?.heartRateBpm ?: 0).toString(),
-            respirationRateText = (data?.respirationRateBrpm ?: 0).toString(),
+    fun map(data: DriverHealthData?): WidgetSlotUiState.DriverHealth {
+        val heartRate = data?.heartRateBpm ?: 0
+        val respirationRate = data?.respirationRateBrpm ?: 0
+        return WidgetSlotUiState.DriverHealth(
+            heartRateText = heartRate.toString(),
+            respirationRateText = respirationRate.toString(),
+            isHeartRateAvailable = heartRate != 0,
+            isRespirationRateAvailable = respirationRate != 0,
         )
+    }
 }
 
 class NavigationUiMapper @Inject constructor() {

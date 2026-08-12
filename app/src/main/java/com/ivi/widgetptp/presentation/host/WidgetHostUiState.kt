@@ -26,6 +26,8 @@ sealed interface WidgetSlotUiState {
     data class DriverHealth(
         val heartRateText: String,
         val respirationRateText: String,
+        val isHeartRateAvailable: Boolean,
+        val isRespirationRateAvailable: Boolean,
     ) : WidgetSlotUiState
 
     data class Weather(

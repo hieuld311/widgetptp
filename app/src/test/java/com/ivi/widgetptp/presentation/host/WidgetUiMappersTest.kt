@@ -10,7 +10,9 @@ import java.time.Instant
 import java.time.ZoneId
 import java.util.Locale
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class WidgetUiMappersTest {
@@ -44,6 +46,8 @@ class WidgetUiMappersTest {
 
         assertEquals("72", state.heartRateText)
         assertEquals("14", state.respirationRateText)
+        assertTrue(state.isHeartRateAvailable)
+        assertTrue(state.isRespirationRateAvailable)
     }
 
     @Test
@@ -52,6 +56,8 @@ class WidgetUiMappersTest {
 
         assertEquals("0", state.heartRateText)
         assertEquals("0", state.respirationRateText)
+        assertFalse(state.isHeartRateAvailable)
+        assertFalse(state.isRespirationRateAvailable)
     }
 
     @Test

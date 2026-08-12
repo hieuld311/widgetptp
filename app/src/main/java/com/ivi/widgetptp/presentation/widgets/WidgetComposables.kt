@@ -220,14 +220,22 @@ fun DriverHealthWidget(state: WidgetSlotUiState.DriverHealth) {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         HealthMetric(
-            iconResource = R.drawable.ico_cluster_widget_driver_health_heart_rate_n,
+            iconResource = if (state.isHeartRateAvailable) {
+                R.drawable.ico_cluster_widget_driver_health_heart_rate_n
+            } else {
+                R.drawable.ico_cluster_widget_driver_health_heart_rate_d
+            },
             iconDescription = stringResource(R.string.heart_rate_icon),
             valueText = state.heartRateText,
             unitText = stringResource(R.string.heart_rate_unit),
             labelText = stringResource(R.string.heart_rate_label),
         )
         HealthMetric(
-            iconResource = R.drawable.ico_cluster_widget_driver_health_breathe_rate_n,
+            iconResource = if (state.isRespirationRateAvailable) {
+                R.drawable.ico_cluster_widget_driver_health_breathe_rate_n
+            } else {
+                R.drawable.ico_cluster_widget_driver_health_breathe_rate_d
+            },
             iconDescription = stringResource(R.string.respiration_rate_icon),
             valueText = state.respirationRateText,
             unitText = stringResource(R.string.respiration_rate_unit),
