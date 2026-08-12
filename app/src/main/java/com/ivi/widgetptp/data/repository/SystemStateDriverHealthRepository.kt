@@ -65,10 +65,8 @@ class SystemStateDriverHealthRepository @Inject constructor(
 
         val heartRateListener = object : PropertyListener<Int> {
             override fun onPropertyChanged(value: PropertyValue<Int>) {
-                val latestHeartRate: Int? =
-                    manager.getProperty(PropertyID.DRIVER_HEART_RATE)
                 synchronized(stateLock) {
-                    heartRateBpm = latestHeartRate
+                    heartRateBpm = value.value
                 }
                 publishLatest()
             }
@@ -76,10 +74,8 @@ class SystemStateDriverHealthRepository @Inject constructor(
 
         val respirationRateListener = object : PropertyListener<Int> {
             override fun onPropertyChanged(value: PropertyValue<Int>) {
-                val latestRespirationRate: Int? =
-                    manager.getProperty(PropertyID.DRIVER_BREATH_RATE)
                 synchronized(stateLock) {
-                    respirationRateBrpm = latestRespirationRate
+                    respirationRateBrpm = value.value
                 }
                 publishLatest()
             }

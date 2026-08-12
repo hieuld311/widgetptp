@@ -87,7 +87,7 @@ class SystemStateWeatherRepository @Inject constructor(
         val weatherCodeListener = object : PropertyListener<Int> {
             override fun onPropertyChanged(value: PropertyValue<Int>) {
                 synchronized(stateLock) {
-                    weatherCode = manager.getProperty(PropertyID.WEATHER_CODE)
+                    weatherCode = value.value
                 }
                 publishLatest()
             }
@@ -96,7 +96,7 @@ class SystemStateWeatherRepository @Inject constructor(
         val temperatureListener = object : PropertyListener<Float> {
             override fun onPropertyChanged(value: PropertyValue<Float>) {
                 synchronized(stateLock) {
-                    temperatureCelsius = manager.getProperty(PropertyID.WEATHER_TEMPERATURE)
+                    temperatureCelsius = value.value
                 }
                 publishLatest()
             }
@@ -105,7 +105,7 @@ class SystemStateWeatherRepository @Inject constructor(
         val locationListener = object : PropertyListener<String> {
             override fun onPropertyChanged(value: PropertyValue<String>) {
                 synchronized(stateLock) {
-                    locationName = manager.getProperty(PropertyID.WEATHER_LOCATION)
+                    locationName = value.value
                 }
                 publishLatest()
             }
