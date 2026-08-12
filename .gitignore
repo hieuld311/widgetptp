@@ -1,0 +1,24 @@
+*.iml
+.gradle/
+.kotlin/
+/local.properties
+/.idea/
+.DS_Store
+**/build/
+/captures/
+.externalNativeBuild/
+.cxx/
+
+# Local Codex attachments
+/.codex-remote-attachments/
+
+# OEM/private libraries and packaged resources are intentionally not published
+/app/libs/
+*.jar
+*.aar
+/app/src/main/res/
+
+# Signing material
+*.jks
+*.keystore
+keystore.properties
