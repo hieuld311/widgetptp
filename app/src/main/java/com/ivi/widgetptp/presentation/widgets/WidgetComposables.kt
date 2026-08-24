@@ -453,24 +453,12 @@ fun TirePressureWidget() {
 
 @Composable
 fun LogoWidget() {
-    Row(
-        modifier = Modifier.fillMaxSize(),
-        horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Image(
-            painter = painterResource(R.drawable.img_ptop_logo_carux_n),
-            contentDescription = stringResource(R.string.carux_logo),
-            modifier = Modifier.size(width = 211.dp, height = 94.dp),
-            contentScale = ContentScale.Fit,
-        )
-        Image(
-            painter = painterResource(R.drawable.img_ptop_logo_pioneer_n),
-            contentDescription = stringResource(R.string.pioneer_logo),
-            modifier = Modifier.size(width = 211.dp, height = 94.dp),
-            contentScale = ContentScale.Fit,
-        )
-    }
+    Image(
+        painter = painterResource(R.drawable.img_ptop_logo_carux_n),
+        contentDescription = stringResource(R.string.carux_logo),
+        modifier = Modifier.size(width = 211.dp, height = 94.dp),
+        contentScale = ContentScale.Fit,
+    )
 }
 
 @DrawableRes

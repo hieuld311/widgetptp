@@ -8,7 +8,6 @@ import com.ivi.widgetptp.domain.model.WidgetType
 import com.ivi.widgetptp.domain.repository.DateTimeRepository
 import com.ivi.widgetptp.domain.repository.DriverHealthRepository
 import com.ivi.widgetptp.domain.repository.NavigationRepository
-import com.ivi.widgetptp.domain.repository.TirePressureRepository
 import com.ivi.widgetptp.domain.repository.UnitSettingsRepository
 import com.ivi.widgetptp.domain.repository.VehicleDrivingStateRepository
 import com.ivi.widgetptp.domain.repository.WeatherRepository
@@ -35,7 +34,6 @@ class WidgetHostViewModel @Inject constructor(
     private val dateTimeRepository: DateTimeRepository,
     private val driverHealthRepository: DriverHealthRepository,
     private val weatherRepository: WeatherRepository,
-    private val tirePressureRepository: TirePressureRepository,
     private val navigationRepository: NavigationRepository,
     private val vehicleDrivingStateRepository: VehicleDrivingStateRepository,
     private val unitSettingsRepository: UnitSettingsRepository,
@@ -70,15 +68,8 @@ class WidgetHostViewModel @Inject constructor(
         WidgetType.DRIVER_HEALTH -> driverHealthRepository.driverHealth
             .map(driverHealthUiMapper::map)
         WidgetType.WEATHER -> observeWeather()
-        WidgetType.TIRE_PRESSURE -> combine(
-            tirePressureRepository.tirePressure,
-            vehicleDrivingStateRepository.isDriving,
-        ) { pressure, isDriving ->
-            when {
-                pressure == null -> WidgetSlotUiState.Empty
-                !isDriving -> WidgetSlotUiState.DriveToDisplay
-                else -> WidgetSlotUiState.TirePressureDemo
-            }
+        WidgetType.TIRE_PRESSURE -> vehicleDrivingStateRepository.isDriving.map { isDriving ->
+            if (isDriving) WidgetSlotUiState.TirePressureDemo else WidgetSlotUiState.DriveToDisplay
         }
         WidgetType.LOGO_DISPLAY -> flowOf(WidgetSlotUiState.LogoDisplay)
         WidgetType.NAVIGATION -> navigationRepository.navigation.map { data ->

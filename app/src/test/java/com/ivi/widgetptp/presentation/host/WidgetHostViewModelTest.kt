@@ -2,14 +2,12 @@ package com.ivi.widgetptp.presentation.host
 
 import com.ivi.widgetptp.data.fake.FakeDriverHealthDataSource
 import com.ivi.widgetptp.data.fake.FakeNavigationDataSource
-import com.ivi.widgetptp.data.fake.FakeTirePressureDataSource
 import com.ivi.widgetptp.data.fake.FakeUnitSettingsDataSource
 import com.ivi.widgetptp.data.fake.FakeVehicleDrivingStateDataSource
 import com.ivi.widgetptp.data.fake.FakeWeatherDataSource
 import com.ivi.widgetptp.data.fake.FakeWidgetConfigurationDataSource
 import com.ivi.widgetptp.data.repository.DefaultDriverHealthRepository
 import com.ivi.widgetptp.data.repository.DefaultNavigationRepository
-import com.ivi.widgetptp.data.repository.DefaultTirePressureRepository
 import com.ivi.widgetptp.data.repository.DefaultUnitSettingsRepository
 import com.ivi.widgetptp.data.repository.DefaultVehicleDrivingStateRepository
 import com.ivi.widgetptp.data.repository.DefaultWeatherRepository
@@ -65,7 +63,6 @@ class WidgetHostViewModelTest {
         val driverHealth = DefaultDriverHealthRepository(driverHealthDataSource)
         val weatherDataSource = FakeWeatherDataSource()
         val weather = DefaultWeatherRepository(weatherDataSource)
-        val tirePressure = DefaultTirePressureRepository(FakeTirePressureDataSource())
         val navigation = DefaultNavigationRepository(FakeNavigationDataSource())
         val drivingState = DefaultVehicleDrivingStateRepository(
             FakeVehicleDrivingStateDataSource(),
@@ -86,7 +83,6 @@ class WidgetHostViewModelTest {
             },
             driverHealthRepository = driverHealth,
             weatherRepository = weather,
-            tirePressureRepository = tirePressure,
             navigationRepository = navigation,
             vehicleDrivingStateRepository = drivingState,
             unitSettingsRepository = unitSettings,

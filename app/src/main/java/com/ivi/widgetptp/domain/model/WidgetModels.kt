@@ -46,13 +46,6 @@ data class WeatherData(
     val isDaylight: Boolean,
 )
 
-data class TirePressureData(
-    val frontLeftPsi: Int,
-    val frontRightPsi: Int,
-    val rearLeftPsi: Int,
-    val rearRightPsi: Int,
-)
-
 data class NavigationData(
     val destination: String?,
     val eta: String?,

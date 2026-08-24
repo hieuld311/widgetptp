@@ -1,7 +1,6 @@
 package com.ivi.widgetptp.di
 
 import com.ivi.widgetptp.data.repository.DefaultNavigationRepository
-import com.ivi.widgetptp.data.repository.DefaultTirePressureRepository
 import com.ivi.widgetptp.data.repository.DefaultUnitSettingsRepository
 import com.ivi.widgetptp.data.repository.DefaultVehicleDrivingStateRepository
 import com.ivi.widgetptp.data.repository.DefaultWidgetConfigurationRepository
@@ -11,7 +10,6 @@ import com.ivi.widgetptp.data.repository.SystemStateWeatherRepository
 import com.ivi.widgetptp.domain.repository.DateTimeRepository
 import com.ivi.widgetptp.domain.repository.DriverHealthRepository
 import com.ivi.widgetptp.domain.repository.NavigationRepository
-import com.ivi.widgetptp.domain.repository.TirePressureRepository
 import com.ivi.widgetptp.domain.repository.UnitSettingsRepository
 import com.ivi.widgetptp.domain.repository.VehicleDrivingStateRepository
 import com.ivi.widgetptp.domain.repository.WeatherRepository
@@ -48,12 +46,6 @@ abstract class RepositoryModule {
     abstract fun bindWeatherRepository(
         implementation: SystemStateWeatherRepository,
     ): WeatherRepository
-
-    @Binds
-    @Singleton
-    abstract fun bindTirePressureRepository(
-        implementation: DefaultTirePressureRepository,
-    ): TirePressureRepository
 
     @Binds
     @Singleton
