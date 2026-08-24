@@ -1,11 +1,11 @@
 package com.ivi.widgetptp.di
 
-import com.ivi.widgetptp.data.repository.DefaultNavigationRepository
 import com.ivi.widgetptp.data.repository.DefaultUnitSettingsRepository
 import com.ivi.widgetptp.data.repository.DefaultVehicleDrivingStateRepository
 import com.ivi.widgetptp.data.repository.DefaultWidgetConfigurationRepository
 import com.ivi.widgetptp.data.repository.SystemDateTimeRepository
 import com.ivi.widgetptp.data.repository.SystemStateDriverHealthRepository
+import com.ivi.widgetptp.data.repository.SystemStateNavigationRepository
 import com.ivi.widgetptp.data.repository.SystemStateWeatherRepository
 import com.ivi.widgetptp.domain.repository.DateTimeRepository
 import com.ivi.widgetptp.domain.repository.DriverHealthRepository
@@ -50,7 +50,7 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindNavigationRepository(
-        implementation: DefaultNavigationRepository,
+        implementation: SystemStateNavigationRepository,
     ): NavigationRepository
 
     @Binds
