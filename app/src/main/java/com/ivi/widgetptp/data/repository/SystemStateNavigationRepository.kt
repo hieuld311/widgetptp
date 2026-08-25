@@ -125,7 +125,7 @@ class SystemStateNavigationRepository @Inject constructor(
                 Log.i(TAG, "NAVIGATION_REMAINING_DISTANCE changed: ${value.value}")
                 synchronized(stateLock) {
                     remainingDistanceMeters = value.value
-                    if (totalDistanceMetersBaseline == null) {
+                    if ((totalDistanceMetersBaseline ?: 0f) <= 0f && value.value > 0f) {
                         totalDistanceMetersBaseline = value.value
                     }
                 }
@@ -146,7 +146,7 @@ class SystemStateNavigationRepository @Inject constructor(
                 destination = manager.getProperty(PropertyID.NAVIGATION_DESTINATION_NAME)
                 etaSeconds = manager.getProperty(PropertyID.NAVIGATION_ETA_SECONDS)
                 remainingDistanceMeters = manager.getProperty(PropertyID.NAVIGATION_REMAINING_DISTANCE)
-                totalDistanceMetersBaseline = remainingDistanceMeters
+                totalDistanceMetersBaseline = remainingDistanceMeters?.takeIf { it > 0f }
                 Log.i(TAG, "Initial getProperty snapshot: active=$active destination=$destination " +
                     "etaSeconds=$etaSeconds remainingDistanceMeters=$remainingDistanceMeters")
             }
